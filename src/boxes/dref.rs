@@ -31,7 +31,7 @@ impl DrefBox {
             let version = buf.get_u8();
             let flags = buf.get_u24();
 
-            let url = if entry_type == b"url" {
+            let url = if &entry_type.to_be_bytes() == b"url " {
                 let mut url_bytes = Vec::new();
                 while buf.has_remaining() {
                     url_bytes.push(buf.get_u8());
