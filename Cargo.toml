@@ -1,0 +1,9 @@
+[package]
+name = "mp4dase"
+version = "0.1.0"
+edition = "2021"
+publish = ["crates-io"]
+authors = ["Thiago Pontes <crates@thiago.me>"]
+
+[dependencies]
+bytes = "1.6.0"
