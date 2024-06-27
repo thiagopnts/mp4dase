@@ -5,20 +5,21 @@ use std::fmt::{self, Display};
 
 use super::{BoxType, BOX_HEADER_SIZE};
 
+#[derive(Debug, Clone)]
 pub struct TkhdBox {
     pub view: bytes::Bytes,
-    version: u8,
-    flags: u32,
-    creation_time: u64,
-    modification_time: u64,
-    track_id: u32,
-    duration: u64,
-    layer: u16,
-    alternate_group: u16,
-    volume: u16,
-    matrix: [u32; 9],
-    width: u32,
-    height: u32,
+    pub version: u8,
+    pub flags: u32,
+    pub creation_time: u64,
+    pub modification_time: u64,
+    pub track_id: u32,
+    pub duration: u64,
+    pub layer: u16,
+    pub alternate_group: u16,
+    pub volume: u16,
+    pub matrix: [u32; 9],
+    pub width: u32,
+    pub height: u32,
 }
 
 impl Display for TkhdBox {

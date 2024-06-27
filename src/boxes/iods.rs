@@ -3,6 +3,7 @@ use bytes::Buf;
 
 use std::fmt::{self, Display};
 
+#[derive(Debug, Clone)]
 pub struct IodsBox {
     version: u8,
     flags: u32,

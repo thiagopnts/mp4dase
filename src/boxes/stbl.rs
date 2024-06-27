@@ -1,6 +1,7 @@
 use crate::boxes::{BoxType, BOX_HEADER_SIZE};
 use bytes::Buf;
 
+#[derive(Debug, Clone)]
 pub struct StblBox {
     pub view: bytes::Bytes,
     pub boxes: Vec<BoxType>,

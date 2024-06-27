@@ -1,6 +1,7 @@
 use crate::buf_ext::BufExt;
 use bytes::Buf;
 
+#[derive(Debug, Clone)]
 pub struct HdlrBox {
     pub view: bytes::Bytes,
     pub version: u8,

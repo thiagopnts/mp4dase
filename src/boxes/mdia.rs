@@ -1,9 +1,13 @@
-use super::{BoxType, BOX_HEADER_SIZE};
+use super::{BoxType, HdlrBox, MdhdBox, MinfBox, BOX_HEADER_SIZE};
 use bytes::Buf;
 
+#[derive(Debug, Clone)]
 pub struct MdiaBox {
     pub view: bytes::Bytes,
-    pub boxes: Vec<BoxType>,
+    pub minf: MinfBox,
+    pub mdhd: MdhdBox,
+    pub hdlr: HdlrBox,
+    // elng: ElngBox,
 }
 
 impl MdiaBox {
@@ -15,6 +19,18 @@ impl MdiaBox {
         while buf.remaining() >= BOX_HEADER_SIZE {
             boxes.push(BoxType::parse(buf));
         }
-        return MdiaBox { view, boxes };
+        let minf = BoxType::find_box(&boxes, |b| match b {
+            BoxType::Minf(minf) => Some(minf),
+            _ => None,
+        }).expect("mdia missing minf");
+        let mdhd = BoxType::find_box(&boxes, |b| match b {
+            BoxType::Mdhd(mdhd) => Some(mdhd),
+            _ => None,
+        }).expect("mdia missing mdhd");
+        let hdlr = BoxType::find_box(&boxes, |b| match b {
+            BoxType::Hdlr(hdlr) => Some(hdlr),
+            _ => None,
+        }).expect("mdia missing hdlr");
+        return MdiaBox { view, minf, mdhd, hdlr };
     }
 }

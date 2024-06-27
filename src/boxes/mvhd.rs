@@ -4,6 +4,7 @@ use std::fmt::Display;
 
 use super::BoxType;
 
+#[derive(Debug, Clone)]
 pub struct MvhdBox {
     view: Bytes,
     version: u8,

@@ -3,6 +3,7 @@ use bytes::Buf;
 
 use super::BoxType;
 
+#[derive(Debug, Clone)]
 pub struct MdhdBox {
     pub view: bytes::Bytes,
     pub version: u8,

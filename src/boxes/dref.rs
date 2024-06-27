@@ -1,6 +1,8 @@
 use crate::buf_ext::BufExt;
+use log::debug;
 use bytes::Buf;
 
+#[derive(Debug, Clone)]
 pub struct DrefBox {
     pub view: bytes::Bytes,
     pub version: u8,
@@ -9,6 +11,7 @@ pub struct DrefBox {
     pub entries: Vec<DrefEntry>,
 }
 
+#[derive(Debug, Clone)]
 pub struct DrefEntry {
     pub entry_size: u32,
     pub entry_type: u32,
@@ -24,6 +27,7 @@ impl DrefBox {
         let flags = buf.get_u24();
         let entry_count = buf.get_u32();
         let mut entries = Vec::new();
+        debug!("DrefBox::parse entry count {}", entry_count);
 
         for _ in 0..entry_count {
             let entry_size = buf.get_u32();

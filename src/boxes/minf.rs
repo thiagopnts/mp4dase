@@ -2,6 +2,7 @@ use bytes::Buf;
 use std::vec::Vec;
 use crate::boxes::{BoxType, BOX_HEADER_SIZE};
 
+#[derive(Debug, Clone)]
 pub struct MinfBox {
     pub view: bytes::Bytes,
     pub boxes: Vec<BoxType>,

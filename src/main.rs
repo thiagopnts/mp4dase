@@ -1,19 +1,18 @@
-use std::{fs::File, hash::Hash, io::Read};
-use bytes::{Buf, Bytes};
+use std::fs::File;
+use log::debug;
 
 mod boxes;
 mod buf_ext;
-use boxes::BoxType;
+mod mp4;
+mod track;
+
+use crate::mp4::Mp4File;
 
 fn main() -> std::io::Result<()> {
-    let mut file = File::open("./BigBuckBunny.mp4")?;
-    let mut buffer = Vec::new();
-    file.read_to_end(&mut buffer)?;
-
-    let mut bytes = Bytes::from(buffer);
-    println!("{}", bytes.len());
-    BoxType::parse(&mut bytes);
-    println!("{}", bytes.len());
-    BoxType::parse(&mut bytes);
-    return Ok(());
+    env_logger::init();
+    let mut file = File::open("/Users/thiago/Downloads/BigBuckBunny.mp4")?;
+    let f = Mp4File::parse(&mut file)?;
+    debug!("{}", f.tracks().get(0).unwrap().kind);
+    debug!("{}", f.tracks().get(1).unwrap().kind);
+    Ok(())
 }

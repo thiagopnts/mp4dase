@@ -1,6 +1,7 @@
 use bytes::{Buf, Bytes};
 use std::fmt::Display;
 
+#[derive(Debug, Clone)]
 pub struct FtypBox {
     major_brand: String,
     minor_version: u32,
