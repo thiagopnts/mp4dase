@@ -7,8 +7,6 @@ authors = ["Thiago Pontes <crates@thiago.me>"]
 
 [dependencies]
 bytes = "1.6.0"
-# FIXME: remove env_logger once we the crate becames a library for real
-env_logger = "0.11.3"
 log = "0.4.21"
 
 [dev-dependencies]
